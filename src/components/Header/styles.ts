@@ -43,7 +43,7 @@ export const Info = styled.div`
     }
 `
 
-export const Input = styled.div`
+export const Input = styled.form`
     display: flex;
     align-items: center;
     width: 100%;
