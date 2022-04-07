@@ -1,14 +1,17 @@
-import light_desktop_background from "../../assets/bg-desktop-light.jpg";
 import styled from "styled-components"
 
-export const Container = styled.div`
+interface InfoProps {
+    background: string;
+}
+
+export const Container = styled.div<InfoProps>`
     display: flex;
     justify-content: center;
     width: 100%;
     height: 35%;
 
     background-size: cover;
-    background-image: url(${light_desktop_background});
+    background-image: url(${(props) => props.background});
 
     img{
         width: 100%;
@@ -31,6 +34,8 @@ export const Content = styled.div`
     }
 `
 
+
+
 export const Info = styled.div`
     display: flex;
     align-items: center;
@@ -48,22 +53,23 @@ export const Input = styled.form`
     align-items: center;
     width: 100%;
 
-    border: 1px solid black;
     border-radius: 0.25rem;
 
-    background: white;
+    background: ${props => props.theme.colors.content_background};
     div{
         width: 1.5rem;
         height: 1.5rem;
 
         margin: 0 2rem;
         border-radius: 50%;
-        border: 1px solid #CCC;
+        border: 1px solid ${props => props.theme.colors.border_theme};
     }
 
     input{
+        background: ${props => props.theme.colors.content_background};
         border: none;
         border-radius: 0.25rem;
+        
         :focus{
             outline: none;
         }

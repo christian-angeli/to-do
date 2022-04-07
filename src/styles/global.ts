@@ -25,10 +25,11 @@ export const GlobalStyle = createGlobalStyle`
         max-height: 100vh;
     }
 
-    p, span, button {
+    p, span, button, input {
         font-family: 'Josefin Sans', sans-serif;
         font-size: 1rem;
         font-weight: 400;
+        color: ${props => props.theme.colors.input_letter};
     }
 
     h1, h2, h3, h4, h5, h6 {

@@ -9,7 +9,7 @@ export const Container = styled.div`
     width: 100%;
     height: 65%;
 
-    background: hsl(236, 33%, 92%);
+    background: ${props => props.theme.colors.page_background};
 `
 
 export const Content = styled.div`
@@ -18,7 +18,7 @@ export const Content = styled.div`
     height: 90%;
 
     border-radius: 0.25rem;
-    background: hsl(0, 0%, 98%);
+    background: ${props => props.theme.colors.content_background};
 
     overflow-y: hidden;
 `
@@ -29,19 +29,28 @@ export const Input = styled.div`
     width: 100%;
     height: 4rem;
 
-    border-bottom: 1px solid #cccc;
+    border-bottom: 1px solid ${props => props.theme.colors.border_theme};
 
-    background: hsl(0, 0%, 98%);
+    background: ${props => props.theme.colors.content_background};
+`
+export const Card = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 100%;
+    height: 100%;
 `
 
 export const ActiveButton = styled.button`
         width: 1.5rem;
         height: 1.5rem;
 
-        margin: 0 2rem;
+        margin-left: 1rem;
         border-radius: 50%;
-        border: 1px solid #CCC;
-        background: hsl(0, 0%, 98%);
+        border: 1px solid ${props => props.theme.colors.border_theme};
+        background: ${props => props.theme.colors.content_background};
+        
     
 `
 
@@ -49,17 +58,55 @@ export const DisabledButton = styled.button`
         width: 1.5rem;
         height: 1.5rem;
 
-        margin: 0 2rem;
+        margin-left: 1rem;
         border-radius: 50%;
-        border: 1px solid #CCC;
-        background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));;
-`
-export const ActiveDescription = styled.p`
+        border: 1px solid ${props => props.theme.colors.border_theme};
+        background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 `
 
-export const DisabledDescription = styled.p`
+export const DeleteButton = styled.button`
+    display: flex;
+    border: none;
+    background: none;
+    margin-right: 0.5rem;
+
+    transition: filter 0.2s;
+
+    &:hover {
+        filter: opacity(0.6);
+    }
+`
+
+export const ActiveDescription = styled.div`
+    display: flex;
+    align-items: center;
+
+    width: 80%;
+    max-width: 80%;
+    height: 100%;
+
+    overflow-wrap: break-word;
+
+    p{
+        max-width: 100%;
+    }
+`
+
+export const DisabledDescription = styled.div`
     text-decoration: line-through;
-    color: hsl(236, 9%, 61%);
+    text-decoration-color: ${props => props.theme.colors.done_letter};
+    display: flex;
+    align-items: center;
+
+    width: 80%;
+    max-width: 80%;
+    height: 100%;
+
+    overflow-wrap: break-word;
+
+    p{
+        max-width: 100%;
+    }
 `
 
 export const TodoList = styled.div`

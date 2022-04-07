@@ -4,8 +4,10 @@ import {
   Content,
   Advice,
   Input,
+  Card,
   TodoList,
   Options,
+  DeleteButton,
   Filters,
   ActiveButton,
   DisabledButton,
@@ -13,6 +15,7 @@ import {
   DisabledDescription,
 } from "./styles";
 import iconCheck from "../../assets/icon-check.svg";
+import iconCross from "../../assets/icon-cross.svg";
 import { useState } from "react";
 
 export function List() {
@@ -24,12 +27,12 @@ export function List() {
     handleActiveList,
     handleCompletedList,
     handleRemoveCompletedTasks,
+    handleDeleteTask,
   } = useTodo();
   const [isSelected, setIsSelected] = useState("all");
 
   function setSelectedButton(name: string) {
     setIsSelected(name);
-    console.log(isSelected);
   }
 
   return (
@@ -37,23 +40,31 @@ export function List() {
       <Content>
         <TodoList>
           {todoList.map((todo) => (
-            <Input key={todo.description}>
+            <Input key={todo.id}>
               {todo.isActive === true ? (
-                <>
+                <Card>
                   <ActiveButton
-                    onClick={() => handleCheckActive(todo.description)}
+                    onClick={() => handleCheckActive(todo.id)}
                   ></ActiveButton>
-                  <ActiveDescription>{todo.description}</ActiveDescription>
-                </>
+                  <ActiveDescription>
+                    <p>{todo.description}</p>
+                  </ActiveDescription>
+                  <DeleteButton onClick={() => handleDeleteTask(todo.id)}>
+                    <img src={iconCross} alt="" />
+                  </DeleteButton>
+                </Card>
               ) : (
-                <>
-                  <DisabledButton
-                    onClick={() => handleCheckActive(todo.description)}
-                  >
+                <Card>
+                  <DisabledButton onClick={() => handleCheckActive(todo.id)}>
                     <img src={iconCheck}></img>
                   </DisabledButton>
-                  <DisabledDescription>{todo.description}</DisabledDescription>
-                </>
+                  <DisabledDescription>
+                    <p>{todo.description}</p>
+                  </DisabledDescription>
+                  <DeleteButton onClick={() => handleDeleteTask(todo.id)}>
+                    <img src={iconCross} alt="" />
+                  </DeleteButton>
+                </Card>
               )}
             </Input>
           ))}
@@ -81,7 +92,7 @@ export function List() {
             </button>
             <button
               onClick={() => {
-                handleActiveList();
+                handleCompletedList();
                 setSelectedButton("completed");
               }}
               className={isSelected === "completed" ? "selected" : ""}

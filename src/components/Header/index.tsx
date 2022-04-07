@@ -1,9 +1,18 @@
 import { Container, Content, Info, Input } from "./styles";
-import icon_moon from "../../assets/icon-moon.svg";
 import { FormEvent, useState } from "react";
 import { useTodo } from "../../hooks/useTodo";
 
-export function Header() {
+interface HeaderProps {
+  handleSetTheme: () => void;
+  image: string;
+  backgroundImage: string;
+}
+
+export function Header({
+  image,
+  backgroundImage,
+  handleSetTheme,
+}: HeaderProps) {
   const [description, setDescription] = useState("");
 
   const { createTodo } = useTodo();
@@ -17,17 +26,18 @@ export function Header() {
   }
 
   return (
-    <Container>
+    <Container background={backgroundImage}>
       <Content>
         <Info>
           <h1>TODO</h1>
-          <img src={icon_moon} alt="" />
+          <img onClick={handleSetTheme} src={image} alt="" />
         </Info>
         <Input onSubmit={handleCreateNewTodo}>
           <div></div>
           <input
             type="text"
             value={description}
+            maxLength={250}
             onChange={(event) => setDescription(event.target.value)}
           />
         </Input>

@@ -9,9 +9,10 @@ import {
 interface TodoInterface {
   description: string;
   isActive: boolean;
+  id: string;
 }
 
-type TodoInput = Omit<TodoInterface, "isActive">;
+type TodoInput = Omit<TodoInterface, "isActive" | "id">;
 
 interface TodoProviderProps {
   children: ReactNode;
@@ -22,6 +23,7 @@ interface TodoContextData {
   itemsLeft: number;
   createTodo: (todo: TodoInput) => Promise<void>;
   handleCheckActive: (id: string) => void;
+  handleDeleteTask: (itemId: string) => void;
   handleAllList: () => void;
   handleActiveList: () => void;
   handleCompletedList: () => void;
@@ -36,13 +38,14 @@ export function TodoProvider({ children }: TodoProviderProps) {
   const [itemsLeft, setItemsLeft] = useState(0);
 
   useEffect(() => {
-    const data = todoList.filter((value) => value.isActive === true);
+    const data = allList.filter((value) => value.isActive === true);
     setItemsLeft(data.length);
-  }, [todoList]);
+  }, [allList]);
 
   async function createTodo(todoInput: TodoInput) {
     const todoInputed = {
       ...todoInput,
+      id: Math.random().toString(36).slice(2),
       isActive: true,
     };
 
@@ -52,13 +55,13 @@ export function TodoProvider({ children }: TodoProviderProps) {
 
   function handleCheckActive(todoId: string) {
     const newList = todoList.map((todo) => {
-      if (todo.description === todoId && todo.isActive === true) {
+      if (todo.id === todoId && todo.isActive === true) {
         return {
           ...todo,
           isActive: false,
         };
       }
-      if (todo.description === todoId && todo.isActive === false) {
+      if (todo.id === todoId && todo.isActive === false) {
         return {
           ...todo,
           isActive: true,
@@ -90,6 +93,12 @@ export function TodoProvider({ children }: TodoProviderProps) {
     setAllList(newList);
   }
 
+  async function handleDeleteTask(itemId: string) {
+    const newList = allList.filter((item) => item.id !== itemId);
+    setTodoList(newList);
+    setAllList(newList);
+  }
+
   return (
     <TodoContext.Provider
       value={{
@@ -101,6 +110,7 @@ export function TodoProvider({ children }: TodoProviderProps) {
         handleActiveList,
         handleCompletedList,
         handleRemoveCompletedTasks,
+        handleDeleteTask,
       }}
     >
       {children}
