@@ -13,6 +13,7 @@ import {
   DisabledDescription,
 } from "./styles";
 import iconCheck from "../../assets/icon-check.svg";
+import { useState } from "react";
 
 export function List() {
   const {
@@ -24,6 +25,12 @@ export function List() {
     handleCompletedList,
     handleRemoveCompletedTasks,
   } = useTodo();
+  const [isSelected, setIsSelected] = useState("all");
+
+  function setSelectedButton(name: string) {
+    setIsSelected(name);
+    console.log(isSelected);
+  }
 
   return (
     <Container>
@@ -54,9 +61,33 @@ export function List() {
         <Options>
           <p>{itemsLeft} items left</p>
           <Filters>
-            <button onClick={handleAllList}>All</button>
-            <button onClick={handleActiveList}>Active</button>
-            <button onClick={handleCompletedList}>Completed</button>
+            <button
+              onClick={() => {
+                handleAllList();
+                setSelectedButton("all");
+              }}
+              className={isSelected === "all" ? "selected" : ""}
+            >
+              All
+            </button>
+            <button
+              onClick={() => {
+                handleActiveList();
+                setSelectedButton("active");
+              }}
+              className={isSelected === "active" ? "selected" : ""}
+            >
+              Active
+            </button>
+            <button
+              onClick={() => {
+                handleActiveList();
+                setSelectedButton("completed");
+              }}
+              className={isSelected === "completed" ? "selected" : ""}
+            >
+              Completed
+            </button>
           </Filters>
           <button onClick={handleRemoveCompletedTasks}>Clear Completed</button>
         </Options>

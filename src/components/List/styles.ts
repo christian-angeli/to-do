@@ -44,6 +44,7 @@ export const ActiveButton = styled.button`
         background: hsl(0, 0%, 98%);
     
 `
+
 export const DisabledButton = styled.button`
         width: 1.5rem;
         height: 1.5rem;
@@ -120,7 +121,10 @@ export const Filters = styled.div`
 
         &:hover {
             filter: opacity(0.6);
-        }
+        }        
+    }
 
+    button.selected{
+        color: hsl(220, 98%, 61%);
     }
 `
