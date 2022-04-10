@@ -21,9 +21,29 @@ export const Content = styled.div`
     background: ${props => props.theme.colors.content_background};
 
     overflow-y: hidden;
+
+    @media (max-width: 700px) { 
+        width: 90%;
+    }
+`
+export const TodoList = styled.ul`
+    height: 90%;
+
+    overflow: auto;
+
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #cccc;
+        border-radius: 0.25rem;
+    }
+    ::-webkit-scrollbar-track{
+        border-radius: 0 0.25rem 0.25rem 0;
+    }
 `
 
-export const Input = styled.div`
+export const Input = styled.li`
     display: flex;
     align-items: center;
     width: 100%;
@@ -109,23 +129,6 @@ export const DisabledDescription = styled.div`
     }
 `
 
-export const TodoList = styled.div`
-    height: 90%;
-
-    overflow: auto;
-
-    ::-webkit-scrollbar {
-        width: 12px;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: #cccc;
-        border-radius: 0.25rem;
-    }
-    ::-webkit-scrollbar-track{
-        border-radius: 0 0.25rem 0.25rem 0;
-    }
-`
-
 export const Advice = styled.div`
     display: flex;
     align-items: center;
@@ -168,10 +171,18 @@ export const Filters = styled.div`
 
         &:hover {
             filter: opacity(0.6);
-        }        
+        }    
+
+        @media (max-width: 700px) { 
+            margin: 0 0.25rem;
+        }
     }
 
     button.selected{
         color: hsl(220, 98%, 61%);
+    }
+
+    @media (max-width: 700px) { 
+        width: 30%;
     }
 `

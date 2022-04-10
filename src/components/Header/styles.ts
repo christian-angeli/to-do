@@ -32,6 +32,10 @@ export const Content = styled.div`
         height: 4rem;
         font-size: 1.5rem;
     }
+
+    @media (max-width: 700px) { 
+        width: 90%;
+    }
 `
 
 
@@ -45,6 +49,10 @@ export const Info = styled.div`
     img{
         width: 35px;
         height: 35px;
+    }
+    button{
+        border: none;
+        background: none;
     }
 `
 

@@ -30,7 +30,9 @@ export function Header({
       <Content>
         <Info>
           <h1>TODO</h1>
-          <img onClick={handleSetTheme} src={image} alt="" />
+          <button>
+            <img onClick={handleSetTheme} src={image} alt="" />
+          </button>
         </Info>
         <Input onSubmit={handleCreateNewTodo}>
           <div></div>

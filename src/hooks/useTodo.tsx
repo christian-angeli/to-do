@@ -4,6 +4,8 @@ import {
   ReactNode,
   useContext,
   useEffect,
+  SetStateAction,
+  Dispatch,
 } from "react";
 
 interface TodoInterface {
@@ -21,7 +23,9 @@ interface TodoProviderProps {
 interface TodoContextData {
   todoList: TodoInterface[];
   itemsLeft: number;
-  createTodo: (todo: TodoInput) => Promise<void>;
+  createTodo: (todo: TodoInterface) => Promise<void>;
+  setTodoList: Dispatch<SetStateAction<TodoInterface[]>>;
+  setAllList: Dispatch<SetStateAction<TodoInterface[]>>;
   handleCheckActive: (id: string) => void;
   handleDeleteTask: (itemId: string) => void;
   handleAllList: () => void;
@@ -67,8 +71,10 @@ export function TodoProvider({ children }: TodoProviderProps) {
           isActive: true,
         };
       }
+
       return todo;
     });
+
     setTodoList(newList);
     setAllList(newList);
   }
@@ -105,6 +111,8 @@ export function TodoProvider({ children }: TodoProviderProps) {
         todoList,
         itemsLeft,
         createTodo,
+        setTodoList,
+        setAllList,
         handleCheckActive,
         handleAllList,
         handleActiveList,
