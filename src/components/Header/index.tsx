@@ -8,6 +8,10 @@ interface HeaderProps {
   backgroundImage: string;
 }
 
+interface TodoInterface {
+  description: string;
+}
+
 export function Header({
   image,
   backgroundImage,
@@ -20,7 +24,7 @@ export function Header({
   async function handleCreateNewTodo(event: FormEvent) {
     event.preventDefault();
 
-    createTodo({ description });
+    createTodo({ id: "", description, isActive: true });
 
     setDescription("");
   }
