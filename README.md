@@ -14,7 +14,7 @@ As principais técnologias utilizadas nesse projeto foram:
 - <a href="https://www.typescriptlang.org/">Typescript</a>
 
 ## 📝 Licença 
-Esse projeto está sob a licença MIT. Veja o arquivo <a href="https://github.com/christian-angeli/podcast-reactjs-nextjs/blob/main/LICENSE.md">LICENSE</a> para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo <a href="https://github.com/christian-angeli/to-do/blob/master/LICENSE.md">LICENSE</a> para mais detalhes.
 
 <br/>
 
