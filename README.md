@@ -4,6 +4,7 @@ Projeto desenvolvido por mim, baseado em um desafio do <a href="https://www.fron
 
 O projeto pode ser acessado clikando <a href="https://to-do-by-christian-angeli.vercel.app/">aqui</a>.
 
+
 <img src="https://github.com/christian-angeli/to-do/blob/master/to-do.gif"/>
 
 ## 💻 Técnologias
