@@ -1,6 +1,7 @@
 import { Container, Content, Info, Input } from "./styles";
 import { FormEvent, useState } from "react";
 import { useTodo } from "../../hooks/useTodo";
+import { InputLabel } from "../Input/styles";
 
 interface HeaderProps {
   handleSetTheme: () => void;
@@ -40,10 +41,14 @@ export function Header({
         </Info>
         <Input onSubmit={handleCreateNewTodo}>
           <div></div>
-          <input
+          {/* <input
             type="text"
             value={description}
             maxLength={250}
+            onChange={(event) => setDescription(event.target.value)}
+          /> */}
+          <InputLabel
+            value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
         </Input>

@@ -37,14 +37,28 @@ interface TodoContextData {
 const TodoContext = createContext<TodoContextData>({} as TodoContextData);
 
 export function TodoProvider({ children }: TodoProviderProps) {
-  const [todoList, setTodoList] = useState<TodoInterface[]>([]);
-  const [allList, setAllList] = useState<TodoInterface[]>([]);
   const [itemsLeft, setItemsLeft] = useState(0);
+  const [allList, setAllList] = useState<TodoInterface[]>(() => {
+    const storageList = localStorage.getItem("todo@list");
+
+    if (storageList) {
+      return JSON.parse(storageList);
+    }
+    return [];
+  });
+
+  const [todoList, setTodoList] = useState<TodoInterface[]>(() => {
+    if (allList) {
+      return allList;
+    }
+    return [];
+  });
 
   useEffect(() => {
     const data = allList.filter((value) => value.isActive === true);
     setItemsLeft(data.length);
-  }, [allList]);
+    localStorage.setItem("todo@list", JSON.stringify(allList));
+  }, [todoList, allList]);
 
   async function createTodo(todoInput: TodoInput) {
     const todoInputed = {

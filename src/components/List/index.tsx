@@ -44,6 +44,12 @@ export function List() {
     handleDeleteTask,
   } = useTodo();
   const [isSelected, setIsSelected] = useState("all");
+  const [color, setColor] = useState("");
+
+  function handlerColorPicker(value: string) {
+    setColor(value);
+    console.log(color);
+  }
 
   function setSelectedButton(name: string) {
     setIsSelected(name);
@@ -62,7 +68,7 @@ export function List() {
   }
 
   return (
-    <Container>
+    <Container backgroundColor={color}>
       <Content>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="todos">
@@ -151,6 +157,11 @@ export function List() {
       </Content>
       <Advice>
         <span>Drag and drop to redorder list</span>
+        <input
+          type="color"
+          value={color}
+          onChange={(e) => handlerColorPicker(e.target.value)}
+        />
       </Advice>
     </Container>
   );

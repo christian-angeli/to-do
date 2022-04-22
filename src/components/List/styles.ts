@@ -1,6 +1,10 @@
 import styled from "styled-components"
 
-export const Container = styled.div`
+interface ContainerProps {
+    backgroundColor: string;
+}
+
+export const Container = styled.div<ContainerProps>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,7 +13,9 @@ export const Container = styled.div`
     width: 100%;
     height: 65%;
 
-    background: ${props => props.theme.colors.page_background};
+    /* background: ${props => props.theme.colors.page_background}; */
+    background: ${(props) => props.backgroundColor}
+    
 `
 
 export const Content = styled.div`
