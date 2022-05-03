@@ -2,24 +2,17 @@ import { Container, Content, Info, Input } from "./styles";
 import { FormEvent, useState } from "react";
 import { useTodo } from "../../hooks/useTodo";
 import { InputLabel } from "../Input/styles";
-
-interface HeaderProps {
-  handleSetTheme: () => void;
-  image: string;
-  backgroundImage: string;
-}
+import { useToggleTheme } from "../../hooks/useToggleTheme";
 
 interface TodoInterface {
   description: string;
 }
 
-export function Header({
-  image,
-  backgroundImage,
-  handleSetTheme,
-}: HeaderProps) {
+export function Header() {
   const [description, setDescription] = useState("");
 
+  const { toggledBackgroundTheme, toggledIconTheme, handleToggleTheme } =
+    useToggleTheme();
   const { createTodo } = useTodo();
 
   async function handleCreateNewTodo(event: FormEvent) {
@@ -31,22 +24,16 @@ export function Header({
   }
 
   return (
-    <Container background={backgroundImage}>
+    <Container background={toggledBackgroundTheme}>
       <Content>
         <Info>
           <h1>TODO</h1>
           <button>
-            <img onClick={handleSetTheme} src={image} alt="" />
+            <img onClick={handleToggleTheme} src={toggledIconTheme} alt="" />
           </button>
         </Info>
         <Input onSubmit={handleCreateNewTodo}>
           <div></div>
-          {/* <input
-            type="text"
-            value={description}
-            maxLength={250}
-            onChange={(event) => setDescription(event.target.value)}
-          /> */}
           <InputLabel
             value={description}
             onChange={(event) => setDescription(event.target.value)}

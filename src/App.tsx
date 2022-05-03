@@ -1,16 +1,18 @@
-import { useState } from "react";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "./styles/global";
-
-import { Homepage } from "./components/Homepage";
 import { TodoProvider } from "./hooks/useTodo";
+import { ToggleThemeProvider } from "./hooks/useToggleTheme";
+
+import { Homepage } from "./pages/Homepage";
+
+import { GlobalStyle } from "./styles/global";
 
 function App() {
   return (
     <TodoProvider>
-      <Homepage />
+      <ToggleThemeProvider>
+        <Homepage />
+        <GlobalStyle />
+      </ToggleThemeProvider>
     </TodoProvider>
   );
 }
-
 export default App;
